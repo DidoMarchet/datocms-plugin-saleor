@@ -20,10 +20,10 @@ export default function ProductBlock({ product }: PropTypes) {
 
   return (
     <div className={s['product']}>
-      {getMedia(product.node.media)}
+      {getMedia(product.media)}
       <div className={s['product__content']}>
-        <div className={s['product__title']}>{product.node.name}</div>
-        <div className={s['product__code']}>{product.node.id}</div>
+        <div className={s['product__title']}>{product.name}</div>
+        <div className={s['product__code']}>{product.id}</div>
       </div>
     </div>
   )

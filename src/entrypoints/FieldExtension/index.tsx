@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { RenderFieldExtensionCtx } from 'datocms-plugin-sdk'
 import { Canvas, Button } from 'datocms-react-ui'
 
-import SaleorClient, { Config, Products, Product } from '../../classes/SaleorClient'
+import SaleorClient, { Config, Node, Product } from '../../classes/SaleorClient'
 import ProductBlock from '../../components/ProductBlock'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
 import s from './styles.module.css'
 
@@ -14,44 +14,74 @@ type PropTypes = {
   ctx: RenderFieldExtensionCtx
 }
 
+type FetchResult = {
+  product: Product
+}
+
 export default function FieldExtension({ ctx }: PropTypes) {
-  const config = ctx.plugin.attributes.parameters
-  
-  const currentValue:string = ctx.formValues.saleorProduct as string || ''
+  const config: Config = ctx.plugin.attributes.parameters as Config
+
+  {
+    /* Init Client  */
+  }
+  const client = useMemo(() => new SaleorClient(config), [config])
 
   const [product, setProduct] = useState<Product>()
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>('')
 
   const handleOpenModal = async () => {
-    const result:Product = await ctx.openModal({
+    const result: Node = (await ctx.openModal({
       id: 'ProductModal',
       title: 'Browse Saleor Products',
       width: 'l',
       parameters: { config },
-    }) as Product
+    })) as Node
 
-    if(result){
-      setProduct(result) 
-      setValue(result.node.id) 
+    if (result) {
+      const selected = result.node
+      setProduct(selected)
+      ctx.setFieldValue(ctx.fieldPath, result.node.id)
     }
+  }
+
+  useEffect(() => {
+    const currentValue: string = (ctx.formValues[ctx.fieldPath] as string) || ''
+    if (currentValue !== '') {
+      const fetchData = async () => {
+        await client.productMatching(currentValue).then(({ product }: FetchResult) => {
+          setProduct(product)
+        })
+      }
+      fetchData().catch(console.error)
+    }
+  }, [])
+
+  const handleRemove = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setProduct(undefined)
+    ctx.setFieldValue(ctx.fieldPath, '')
   }
 
   return (
     <Canvas ctx={ctx}>
-      {/* Modal button */}
-      <Button
-        buttonType='primary'
-        onClick={handleOpenModal}
-        buttonSize='s'
-        leftIcon={<FontAwesomeIcon icon={faSearch} />}
-      >
-        Browse Saleor Products
-      </Button>
-
-      { product && <ProductBlock product={product} />}
-
+      {product ? (
+        /* Product block */
+        <div>
+          <button type='button' onClick={(e) => handleRemove(e)} className={s['remove']}>
+            <FontAwesomeIcon icon={faTimesCircle} />
+          </button>
+          <ProductBlock product={product} />
+        </div>
+      ) : (
+        /* Modal button */
+        <Button
+          buttonType='primary'
+          onClick={handleOpenModal}
+          buttonSize='s'
+          leftIcon={<FontAwesomeIcon icon={faSearch} />}
+        >
+          Browse Saleor Products
+        </Button>
+      )}
     </Canvas>
-
-    
   )
 }

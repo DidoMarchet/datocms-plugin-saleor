@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { Canvas, Button, TextInput } from 'datocms-react-ui'
 import { RenderModalCtx } from 'datocms-plugin-sdk'
 
-import SaleorClient, { Config, Products, Product } from '../../classes/SaleorClient'
+import SaleorClient, { Config, Products, Node } from '../../classes/SaleorClient'
 import ProductBlock from '../ProductBlock'
 
 import useDebounce from '../../utils/useDebounce'
@@ -30,8 +30,8 @@ export default function ProductModal({ ctx }: PropTypes) {
   }
   const client = useMemo(() => new SaleorClient(config), [config])
 
-  const [products, setProducts] = useState<{ edges: Product[] }>({ edges: [] })
-  const [selected, setSelected] = useState<Product>()
+  const [products, setProducts] = useState<{ edges: Node[] }>({ edges: [] })
+  const [selected, setSelected] = useState<Node>()
   const [sku, setSku] = useState('')
   const debouncedValue = useDebounce<string>(sku, 500)
 
@@ -61,12 +61,12 @@ export default function ProductModal({ ctx }: PropTypes) {
   {
     /* Set Selected */
   }
-  const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, product: Product) => {
+  const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, product: Node) => {
     setSelected(product)
   }
 
   /* On Close Modal */
-  const handleClose = (e: React.MouseEvent<Element, MouseEvent>, selected: Product) => {
+  const handleClose = (e: React.MouseEvent<Element, MouseEvent>, selected: Node) => {
     ctx.resolve(selected)
   }
 
@@ -87,7 +87,7 @@ export default function ProductModal({ ctx }: PropTypes) {
       {/* Display Result */}
       {products.edges.length > 0 && (
         <div className={s['products']}>
-          {products.edges.map((product: Product) => (
+          {products.edges.map((product: Node) => (
             <div
               className={classNames(s['products-item'], {
                 [s['products-item-selected']]: selected && product.node.id === selected.node.id,
@@ -95,7 +95,7 @@ export default function ProductModal({ ctx }: PropTypes) {
               key={product.node.id}
               onClick={(e) => handleSelect(e, product)}
             >
-                <ProductBlock product={product} />
+              <ProductBlock product={product.node} />
             </div>
           ))}
         </div>

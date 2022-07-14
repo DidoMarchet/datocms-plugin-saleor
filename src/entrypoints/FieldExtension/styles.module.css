@@ -1,0 +1,15 @@
+.remove {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 0;
+  background: none;
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.remove:hover {
+  opacity: 0.8;
+}

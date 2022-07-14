@@ -5,6 +5,18 @@ export type Config = {
 }
 
 export type Product = {
+  id: string
+  name: string
+  slug: string
+  media: [
+    {
+      url: string
+      type: string
+    },
+  ]
+}
+
+export type Node = {
   node: {
     id: string
     name: string
@@ -19,7 +31,7 @@ export type Product = {
 }
 
 export type Products = {
-  edges: Product[]
+  edges: Node[]
 }
 
 const productFragment = `
@@ -44,6 +56,14 @@ const getProducts = `
   }
 `
 
+const getProduct = `
+  query getProducts($id: ID) {
+    product(id: $id){
+      ${productFragment}
+    }
+  }
+`
+
 export default class SaleorClient {
   endpoint: string
   channel: string
@@ -59,6 +79,15 @@ export default class SaleorClient {
     const response = await this.fetch({
       query: getProducts,
       variables: { search },
+    })
+
+    return response
+  }
+
+  async productMatching(id: string) {
+    const response = await this.fetch({
+      query: getProduct,
+      variables: { id },
     })
 
     return response
