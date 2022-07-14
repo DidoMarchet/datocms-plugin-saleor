@@ -9,6 +9,7 @@
     "@types/node": "^16.11.43",
     "@types/react": "^17.0.47",
     "@types/react-dom": "^17.0.17",
+    "classnames": "^2.3.1",
     "datocms-plugin-sdk": "^0.5.2",
     "datocms-react-ui": "^0.5.2",
     "final-form": "^4.20.7",
@@ -23,7 +24,7 @@
     "build": "cross-env PUBLIC_URL='.' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint . --ext .ts,.tsx",
+    "lint": "npx eslint . --fix --ext .ts,.tsx",
     "format": "prettier --write 'src/**/*.{tsx,ts}' --config ./.prettierrc",
     "prepublishOnly": "npm run build"
   },

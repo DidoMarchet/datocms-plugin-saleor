@@ -19,7 +19,7 @@ export type Product = {
 }
 
 export type Products = {
-  edges: [Product]
+  edges: Product[]
 }
 
 const productFragment = `
