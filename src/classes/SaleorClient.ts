@@ -1,5 +1,6 @@
 export type Config = {
-  endpoint: string
+  backendUrl: string
+  dashboardUrl?: string
   channel: string
   token?: string
 }
@@ -17,17 +18,7 @@ export type Product = {
 }
 
 export type Node = {
-  node: {
-    id: string
-    name: string
-    slug: string
-    media: [
-      {
-        url: string
-        type: string
-      },
-    ]
-  }
+  node: Product
 }
 
 export type Products = {
@@ -65,12 +56,15 @@ const getProduct = `
 `
 
 export default class SaleorClient {
-  endpoint: string
+  backendUrl: string
+  dashboardUrl?: string
   channel: string
   token?: string
 
-  constructor({ endpoint, channel, token }: Config) {
-    this.endpoint = endpoint
+  constructor({ backendUrl, dashboardUrl, channel, token }: Config) {
+    this.backendUrl = backendUrl.endsWith('/') ? backendUrl.slice(0, -1) : backendUrl
+    this.dashboardUrl =
+      dashboardUrl && dashboardUrl.endsWith('/') ? dashboardUrl.slice(0, -1) : dashboardUrl
     this.channel = channel
     this.token = token
   }
@@ -94,7 +88,7 @@ export default class SaleorClient {
   }
 
   async fetch(requestBody: any) {
-    const res = await fetch(this.endpoint, {
+    const res = await fetch(`${this.backendUrl}/graphql/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,7 +1,19 @@
+.field-wrap{
+  padding: var(--spacing-xs) 0;
+}
+
+.selected{
+  position: relative;
+  padding: var(--spacing-l);
+  margin: var(--spacing-s) 0;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+}
+
 .remove {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: var(--spacing-s);
+  right: var(--spacing-s);
   border: 0;
   background: none;
   opacity: 0.6;
@@ -12,4 +24,8 @@
 
 .remove:hover {
   opacity: 0.8;
+}
+
+.trigger-overlay{
+  margin: var(--spacing-s) 0;
 }

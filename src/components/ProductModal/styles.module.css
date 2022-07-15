@@ -25,6 +25,7 @@
   cursor: pointer;
   border: 1px solid var(--border-color);
   border-radius: 3px;
+  padding: var(--spacing-s);
 }
 
 .products-item:hover, .products-item-selected {
@@ -33,5 +34,5 @@
 }
 
 .search-button{
-  margin: var(--spacing-m) 0;
+  margin: var(--spacing-s) 0;
 }

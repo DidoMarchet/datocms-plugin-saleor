@@ -14,8 +14,8 @@ export default function ConfigScreen({ ctx }: Props) {
         validate={(values: any) => {
           const errors: Record<string, string> = {}
 
-          if (!values.endpoint) {
-            errors.endpoint = 'This field is required!'
+          if (!values.backendUrl) {
+            errors.backendUrl = 'This field is required!'
           }
           if (!values.channel) {
             errors.channel = 'This field is required!'
@@ -30,15 +30,28 @@ export default function ConfigScreen({ ctx }: Props) {
         {({ handleSubmit, submitting, dirty }: any) => (
           <Form onSubmit={handleSubmit}>
             <FieldGroup>
-              {/* Set Saleor GraphQl Endpoint */}
-              <Field name='endpoint'>
+              {/* Set Saleor Backend Url */}
+              <Field name='backendUrl'>
                 {({ input, meta: { error } }) => (
                   <TextField
-                    id='endpoint'
-                    label='GraphQL endpoint'
-                    hint='Insert the GraphQL URL'
-                    placeholder='https://demo.saleor.io/graphql/'
+                    id='backendUrl'
+                    label='Saleor Url'
+                    hint='Insert the Saleor Url'
+                    placeholder='https://backend.saleor.io/'
                     required
+                    error={error}
+                    {...input}
+                  />
+                )}
+              </Field>
+
+              <Field name='dashboardUrl'>
+                {({ input, meta: { error } }) => (
+                  <TextField
+                    id='dashboardUrl'
+                    label='Saleor Dashboard Url'
+                    hint='If the Dashboard has its own Url'
+                    placeholder='https://dashboard.saleor.io/'
                     error={error}
                     {...input}
                   />

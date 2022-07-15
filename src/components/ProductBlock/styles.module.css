@@ -1,7 +1,6 @@
 .product {
   display: flex;
   align-items: center;
-  padding: var(--spacing-s);
 }
 
 .product__content {
@@ -17,6 +16,10 @@
   flex-shrink: 0;
 }
 
+.product-selected .product__image {
+  width: 150px;
+}
+
 .product__image img {
   width: 100%;
   display: block;
@@ -24,12 +27,18 @@
 
 .product__title {
   font-size: var(--font-size-m);
-  margin-bottom: 5px;
+  margin-bottom: var(--spacing-s);;
+}
+
+.product-selected .product__title {
+  font-size: var(--font-size-l);
+  color: var(--accent-color);
+  font-weight: 500;
 }
 
 .product__code {
   font-size: var(--font-size-xs);
-  margin-top: 2px;
+  margin-bottom: var(--spacing-xs);;
   color: var(--light-body-color );
 }
 

@@ -27,7 +27,7 @@ export default function FieldExtension({ ctx }: PropTypes) {
   const client = useMemo(() => new SaleorClient(config), [config])
 
   const [product, setProduct] = useState<Product>()
-  const [value, setValue] = useState<string>('')
+  const [loaded, setLoaded] = useState<boolean>(true)
 
   const handleOpenModal = async () => {
     const result: Node = (await ctx.openModal({
@@ -50,6 +50,7 @@ export default function FieldExtension({ ctx }: PropTypes) {
       const fetchData = async () => {
         await client.productMatching(currentValue).then(({ product }: FetchResult) => {
           setProduct(product)
+          setLoaded(true)
         })
       }
       fetchData().catch(console.error)
@@ -63,17 +64,19 @@ export default function FieldExtension({ ctx }: PropTypes) {
 
   return (
     <Canvas ctx={ctx}>
-      {product ? (
-        /* Product block */
-        <div>
-          <button type='button' onClick={(e) => handleRemove(e)} className={s['remove']}>
-            <FontAwesomeIcon icon={faTimesCircle} />
-          </button>
-          <ProductBlock product={product} />
-        </div>
-      ) : (
-        /* Modal button */
+      <div className={s['field-wrap']}>
+        {product && (
+          /* Product block */
+          <div className={s['selected']}>
+            <button type='button' onClick={(e) => handleRemove(e)} className={s['remove']}>
+              <FontAwesomeIcon icon={faTimesCircle} />
+            </button>
+            <ProductBlock product={product} config={config} selected={true} />
+          </div>
+        )}
+        {/* Modal button */}
         <Button
+          className={s['trigger-overlay']}
           buttonType='primary'
           onClick={handleOpenModal}
           buttonSize='s'
@@ -81,7 +84,7 @@ export default function FieldExtension({ ctx }: PropTypes) {
         >
           Browse Saleor Products
         </Button>
-      )}
+      </div>
     </Canvas>
   )
 }

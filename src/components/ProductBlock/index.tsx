@@ -1,12 +1,24 @@
-import { Product } from '../../classes/SaleorClient'
+import { Config, Product } from '../../classes/SaleorClient'
+import classNames from 'classnames'
 
 import s from './styles.module.css'
 
 type PropTypes = {
   product: Product
+  config: Config
+  selected?: boolean
 }
 
-export default function ProductBlock({ product }: PropTypes) {
+export default function ProductBlock({ product, config, selected }: PropTypes) {
+  const backendUrl = config.backendUrl.endsWith('/')
+    ? config.backendUrl.slice(0, -1)
+    : config.backendUrl
+  const dashboardUrl =
+    config.dashboardUrl && config.dashboardUrl.endsWith('/')
+      ? config.dashboardUrl.slice(0, -1)
+      : config.dashboardUrl
+  const url = dashboardUrl || backendUrl
+
   const getMedia = (media: any) => {
     const finded = media.find((media: any) => media.type === 'IMAGE')
     if (finded) {
@@ -19,11 +31,23 @@ export default function ProductBlock({ product }: PropTypes) {
   }
 
   return (
-    <div className={s['product']}>
+    <div
+      className={classNames(s['product'], {
+        [s['product-selected']]: selected,
+      })}
+    >
       {getMedia(product.media)}
       <div className={s['product__content']}>
-        <div className={s['product__title']}>{product.name}</div>
-        <div className={s['product__code']}>{product.id}</div>
+        <h2 className={s['product__title']}>
+          {selected ? (
+            <a href={`${url}/products/${product.id}`} target='_blank' rel='noreferrer'>
+              {product.name}
+            </a>
+          ) : (
+            product.name
+          )}
+        </h2>
+        <p className={s['product__code']}>{product.id}</p>
       </div>
     </div>
   )
