@@ -5,6 +5,10 @@ export type Config = {
   token?: string
 }
 
+export type Media = {
+  url: string
+  type: string
+}
 export type Product = {
   id: string
   name: string
@@ -14,12 +18,7 @@ export type Product = {
       sku: string
     },
   ]
-  media: [
-    {
-      url: string
-      type: string
-    },
-  ]
+  media: [Media]
 }
 
 export type Node = {
@@ -94,7 +93,8 @@ export default class SaleorClient {
 
     return response
   }
-
+  
+   /* eslint-disable @typescript-eslint/no-explicit-any */
   async fetch(requestBody: any) {
     const res = await fetch(`${this.backendUrl}/graphql/`, {
       method: 'POST',

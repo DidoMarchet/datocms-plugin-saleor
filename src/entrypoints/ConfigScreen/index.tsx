@@ -11,6 +11,7 @@ export default function ConfigScreen({ ctx }: Props) {
     <Canvas ctx={ctx}>
       <FormHandler
         initialValues={ctx.plugin.attributes.parameters}
+        /* eslint-disable @typescript-eslint/no-explicit-any*/
         validate={(values: any) => {
           const errors: Record<string, string> = {}
 
@@ -22,6 +23,7 @@ export default function ConfigScreen({ ctx }: Props) {
           }
           return errors
         }}
+        /* eslint-disable @typescript-eslint/no-explicit-any*/
         onSubmit={async (values: any) => {
           await ctx.updatePluginParameters(values)
           ctx.notice('Settings updated successfully!')

@@ -1,4 +1,4 @@
-import { Config, Product } from '../../classes/SaleorClient'
+import { Config, Media, Product } from '../../classes/SaleorClient'
 import classNames from 'classnames'
 
 import s from './styles.module.css'
@@ -19,8 +19,8 @@ export default function ProductBlock({ product, config, selected }: PropTypes) {
       : config.dashboardUrl
   const url = dashboardUrl || backendUrl
 
-  const getMedia = (media: any) => {
-    const finded = media.find((media: any) => media.type === 'IMAGE')
+  const getMedia = (media: Media[]) => {
+    const finded = media.find((media: Media) => media.type === 'IMAGE')
     if (finded) {
       return (
         <div className={s['product__image']}>

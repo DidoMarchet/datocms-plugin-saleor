@@ -55,6 +55,7 @@ export default function FieldExtension({ ctx }: PropTypes) {
     }
   }, [])
 
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const handleRemove = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setProduct(undefined)
     ctx.setFieldValue(ctx.fieldPath, '')
