@@ -47,7 +47,7 @@ export default function ProductBlock({ product, config, selected }: PropTypes) {
             product.name
           )}
         </h2>
-        <p className={s['product__code']}>{product.id}</p>
+        <p className={s['product__variants']}>{product.variants.length} variants</p>
       </div>
     </div>
   )

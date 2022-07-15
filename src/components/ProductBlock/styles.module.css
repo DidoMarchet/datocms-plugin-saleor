@@ -8,6 +8,10 @@
   flex: 1;
 }
 
+.product__content a{
+  color: var(--accent-color);
+}
+
 .product__image {
   display: block;
   background-size: cover;
@@ -27,7 +31,6 @@
 
 .product__title {
   font-size: var(--font-size-m);
-  margin-bottom: var(--spacing-s);;
 }
 
 .product-selected .product__title {
@@ -36,10 +39,9 @@
   font-weight: 500;
 }
 
-.product__code {
+.product__variants {
   font-size: var(--font-size-xs);
-  margin-bottom: var(--spacing-xs);;
-  color: var(--light-body-color );
+  margin-top: var(--spacing-xs);;
 }
 
 .add__container {

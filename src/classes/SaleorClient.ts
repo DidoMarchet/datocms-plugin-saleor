@@ -9,6 +9,11 @@ export type Product = {
   id: string
   name: string
   slug: string
+  variants: [
+    {
+      sku: string
+    },
+  ]
   media: [
     {
       url: string
@@ -29,6 +34,9 @@ const productFragment = `
   id
   name
   slug
+  variants {
+    sku
+  }
   media{
     url
     type
