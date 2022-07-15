@@ -27,7 +27,6 @@ export default function FieldExtension({ ctx }: PropTypes) {
   const client = useMemo(() => new SaleorClient(config), [config])
 
   const [product, setProduct] = useState<Product>()
-  const [loaded, setLoaded] = useState<boolean>(true)
 
   const handleOpenModal = async () => {
     const result: Node = (await ctx.openModal({
@@ -50,7 +49,6 @@ export default function FieldExtension({ ctx }: PropTypes) {
       const fetchData = async () => {
         await client.productMatching(currentValue).then(({ product }: FetchResult) => {
           setProduct(product)
-          setLoaded(true)
         })
       }
       fetchData().catch(console.error)
