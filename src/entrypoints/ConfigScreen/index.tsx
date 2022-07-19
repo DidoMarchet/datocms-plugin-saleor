@@ -37,8 +37,8 @@ export default function ConfigScreen({ ctx }: Props) {
                 {({ input, meta: { error } }) => (
                   <TextField
                     id='backendUrl'
-                    label='Saleor Url'
-                    hint='Insert the Saleor Url'
+                    label='Saleor url'
+                    hint='Insert the Saleor url'
                     placeholder='https://backend.saleor.io/'
                     required
                     error={error}
@@ -51,8 +51,8 @@ export default function ConfigScreen({ ctx }: Props) {
                 {({ input, meta: { error } }) => (
                   <TextField
                     id='dashboardUrl'
-                    label='Saleor Dashboard Url'
-                    hint='If the Dashboard has its own Url'
+                    label='Saleor dashboard url'
+                    hint='If the dashboard has its own url'
                     placeholder='https://dashboard.saleor.io/'
                     error={error}
                     {...input}
@@ -65,8 +65,8 @@ export default function ConfigScreen({ ctx }: Props) {
                 {({ input, meta: { error } }) => (
                   <TextField
                     id='channel'
-                    label='Selected Channel'
-                    hint='Insert the shop channel slug'
+                    label='Saleor channel'
+                    hint='Insert the used channel slug'
                     placeholder='channel-slug'
                     required
                     error={error}
@@ -80,8 +80,8 @@ export default function ConfigScreen({ ctx }: Props) {
                 {({ input, meta: { error } }) => (
                   <TextField
                     id='token'
-                    label='Saleor Token'
-                    hint='Add token if you need more permission'
+                    label='Saleor token'
+                    hint='Add a token if you need permissions'
                     placeholder='XXXX XXXX XXXX XXXX'
                     error={error}
                     {...input}

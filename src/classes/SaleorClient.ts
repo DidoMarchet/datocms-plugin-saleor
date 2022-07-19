@@ -93,8 +93,8 @@ export default class SaleorClient {
 
     return response
   }
-  
-   /* eslint-disable @typescript-eslint/no-explicit-any */
+
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   async fetch(requestBody: any) {
     const res = await fetch(`${this.backendUrl}/graphql/`, {
       method: 'POST',
