@@ -48,8 +48,8 @@ const productFragment = `
 `
 
 const getProducts = `
-  query getProducts($search: String) {
-    products(first: 100, filter: { search: $search}){
+  query getProducts($search: String, $channel: String) {
+    products(first: 100, filter: { search: $search}, channel: $channel){
       edges{
         node{
           ${productFragment}
@@ -60,8 +60,8 @@ const getProducts = `
 `
 
 const getProduct = `
-  query getProducts($id: ID) {
-    product(id: $id){
+  query getProducts($id: ID, $channel: Strin) {
+    product(id: $id, channel: $channel){
       ${productFragment}
     }
   }
@@ -84,7 +84,7 @@ export default class SaleorClient {
   async productsMatching(search: string) {
     const response = await this.fetch({
       query: getProducts,
-      variables: { search },
+      variables: { search, channel: this.channel },
     })
 
     return response
@@ -93,7 +93,7 @@ export default class SaleorClient {
   async productMatching(id: string) {
     const response = await this.fetch({
       query: getProduct,
-      variables: { id },
+      variables: { id, channel: this.channel },
     })
 
     return response
