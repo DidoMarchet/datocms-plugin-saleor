@@ -60,7 +60,7 @@ const getProducts = `
 `
 
 const getProduct = `
-  query getProducts($id: ID, $channel: Strin) {
+  query getProducts($id: ID, $channel: String) {
     product(id: $id, channel: $channel){
       ${productFragment}
     }
