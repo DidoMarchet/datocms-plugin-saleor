@@ -9,6 +9,7 @@ export type Media = {
   url: string
   type: string
 }
+
 export type Product = {
   id: string
   name: string
@@ -27,6 +28,10 @@ export type Node = {
 
 export type Products = {
   edges: Node[]
+}
+
+export type ErrorApi = {
+  message: string
 }
 
 const productFragment = `
@@ -116,6 +121,12 @@ export default class SaleorClient {
     }
 
     const body = await res.json()
+
+    if (body.errors) {
+      body.errors.forEach(({ message }: ErrorApi) => {
+        throw new Error(message)
+      })
+    }
 
     return body.data
   }
