@@ -38,22 +38,23 @@ export default function ProductBlock({ product, config, selected }: PropTypes) {
     >
       {getMedia(product.media)}
       <div className={s['product__content']}>
+        <p className={s['product__pretitle']}>{product?.sku ? 'Variant' : 'Product '}</p>
         <h2 className={s['product__title']}>
           {/* If it is not a variant it could be a link */}
           {selected && !product?.product?.name ? (
             <a href={`${url}/products/${product.id}`} target='_blank' rel='noreferrer'>
               {product.name}
             </a>
+          ) : product?.product?.name ? (
+            `${product.product.name} ${product.name}`
           ) : (
-            <p>
-              {product?.product?.name ? `${product.product.name} ${product.name}` : product.name}{' '}
-            </p>
+            product.name
           )}
         </h2>
         {product?.variants && (
           <p className={s['product__variants']}>{product.variants.length} variants</p>
         )}
-        {product?.sku && <p className={s['product__variants']}>sku {product?.sku}</p>}
+        {product?.sku && <p className={s['product__variants']}>Sku {product?.sku}</p>}
         {product.product && (
           <p className={s['product__variants']}>
             Variant of{' '}

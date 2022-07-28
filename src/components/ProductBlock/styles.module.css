@@ -29,6 +29,10 @@
   display: block;
 }
 
+.product__pretitle {
+  font-size: var(--font-size-xs);
+}
+
 .product__title {
   font-size: var(--font-size-m);
 }
