@@ -20,6 +20,7 @@ type PropTypes = {
 
 type FetchResult = {
   products: Products
+  productVariants: Products
 }
 
 export default function ProductModal({ ctx }: PropTypes) {
@@ -41,12 +42,13 @@ export default function ProductModal({ ctx }: PropTypes) {
   useEffect(() => {
     if (sku) {
       const fetchData = async () => {
-        await client.productsMatching(sku).then(({ products }: FetchResult) => {
-          setProducts(products)
+        await client.productsMatching(sku).then(({ products, productVariants }: FetchResult) => {
+          const result = { edges: [...products.edges, ...productVariants.edges] }
+          setProducts(result)
           {
             /* Reset selected if it doesn't appear in the new searched array  */
           }
-          if (selected && !products.edges.find((product) => product.node.id === selected.node.id)) {
+          if (selected && !result.edges.find((product) => product.node.id === selected.node.id)) {
             setSelected(undefined)
           }
         })

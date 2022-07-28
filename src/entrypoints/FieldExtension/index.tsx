@@ -16,6 +16,7 @@ type PropTypes = {
 
 type FetchResult = {
   product: Product
+  productVariant: Product
 }
 
 export default function FieldExtension({ ctx }: PropTypes) {
@@ -47,9 +48,12 @@ export default function FieldExtension({ ctx }: PropTypes) {
     const currentValue: string = (ctx.formValues[ctx.fieldPath] as string) || ''
     if (currentValue !== '') {
       const fetchData = async () => {
-        await client.productMatching(currentValue).then(({ product }: FetchResult) => {
-          setProduct(product)
-        })
+        await client
+          .productMatching(currentValue)
+          .then(({ product, productVariant }: FetchResult) => {
+            const result = product || productVariant
+            setProduct(result)
+          })
       }
       fetchData().catch(console.error)
     }

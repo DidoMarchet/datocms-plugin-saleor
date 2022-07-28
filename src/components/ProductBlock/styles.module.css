@@ -35,8 +35,11 @@
 
 .product-selected .product__title {
   font-size: var(--font-size-l);
-  color: var(--accent-color);
   font-weight: 500;
+}
+
+.product-selected .product__title a{
+  color: var(--accent-color);
 }
 
 .product__variants {

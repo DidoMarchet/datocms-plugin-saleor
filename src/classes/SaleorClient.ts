@@ -13,8 +13,13 @@ export type Media = {
 export type Product = {
   id: string
   name: string
-  slug: string
-  variants: [
+  slug?: string
+  sku?: string
+  product?: {
+    name: string
+    id: string
+  }
+  variants?: [
     {
       sku: string
     },
@@ -47,6 +52,20 @@ const productFragment = `
   }
 `
 
+const variantFragment = `
+  id
+  name
+  sku
+  product {
+    name
+    id
+  }
+  media{
+    url
+    type
+  }
+`
+
 const getProducts = `
   query getProducts($search: String, $channel: String) {
     products(first: 100, filter: { search: $search}, channel: $channel){
@@ -56,13 +75,23 @@ const getProducts = `
         }
       }
     }
+    productVariants(first: 100, filter: { search: $search}, channel: $channel){
+      edges{
+        node{
+          ${variantFragment}
+        }
+      }
+    }
   }
 `
 
 const getProduct = `
-  query getProducts($id: ID, $channel: String) {
+  query getProduct($id: ID, $channel: String) {
     product(id: $id, channel: $channel){
       ${productFragment}
+    }
+    productVariant(id: $id, channel: $channel){
+      ${variantFragment}
     }
   }
 `
@@ -86,7 +115,6 @@ export default class SaleorClient {
       query: getProducts,
       variables: { search, channel: this.channel },
     })
-
     return response
   }
 
