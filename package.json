@@ -58,12 +58,16 @@
       "last 1 safari version"
     ]
   },
-
+  "keywords": [
+    "datocms-plugin",
+    "saleor",
+    "datocms"
+  ],
   "datoCmsPlugin": {
     "title": "Saleor",
     "previewImage": "",
     "coverImage": "docs/cover.png",
-    "entryPoint": "build/index.html"
-    
+    "entryPoint": "build/index.html",
+    "permissions": []
   }
 }
