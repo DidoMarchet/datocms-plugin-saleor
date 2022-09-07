@@ -1,7 +1,6 @@
 {
   "name": "datocms-plugin-saleor",
   "version": "1.0.0",
-  "private": true,
   "description": "A plugin made in Quamm <www.quamm.it> that allows users to search and select Saleor products",
   "author": "Davide Marchet <davide@davidemarchet.com>",
   "scripts": {
