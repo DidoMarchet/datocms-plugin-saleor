@@ -1,6 +1,6 @@
 {
   "name": "datocms-plugin-saleor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Quickly find Saleor products and variants and link them to DatoCMS",
   "author": "Davide Marchet <davide@davidemarchet.com>",
   "homepage": "https://github.com/DidoMarchet/datocms-plugin-saleor",
@@ -60,9 +60,7 @@
     ]
   },
   "keywords": [
-    "datocms-plugin",
-    "saleor",
-    "datocms"
+    "datocms-plugin"
   ],
   "datoCmsPlugin": {
     "title": "Saleor",
