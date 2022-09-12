@@ -97,7 +97,7 @@ export default function ProductModal({ ctx }: PropTypes) {
               key={product.node.id}
               onClick={(e) => handleSelect(e, product)}
             >
-              <ProductBlock product={product.node} config={config} />
+              <ProductBlock product={product.node}  />
             </div>
           ))}
         </div>

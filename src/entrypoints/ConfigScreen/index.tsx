@@ -38,22 +38,9 @@ export default function ConfigScreen({ ctx }: Props) {
                   <TextField
                     id='backendUrl'
                     label='Saleor url'
-                    hint='Insert the Saleor url'
-                    placeholder='https://backend.saleor.io/'
+                    hint='Insert the Saleor graphQl endpoint'
+                    placeholder='https://backend.saleor.io/graphql/'
                     required
-                    error={error}
-                    {...input}
-                  />
-                )}
-              </Field>
-
-              <Field name='dashboardUrl'>
-                {({ input, meta: { error } }) => (
-                  <TextField
-                    id='dashboardUrl'
-                    label='Saleor dashboard url'
-                    hint='If the dashboard has its own url'
-                    placeholder='https://dashboard.saleor.io/'
                     error={error}
                     {...input}
                   />
@@ -66,7 +53,7 @@ export default function ConfigScreen({ ctx }: Props) {
                   <TextField
                     id='channel'
                     label='Saleor channel'
-                    hint='Insert the used channel slug'
+                    hint='Insert the channel slug'
                     placeholder='channel-slug'
                     required
                     error={error}
@@ -81,7 +68,7 @@ export default function ConfigScreen({ ctx }: Props) {
                   <TextField
                     id='token'
                     label='Saleor token'
-                    hint='Add a token if you need permissions'
+                    hint='Add a token if you need'
                     placeholder='XXXX XXXX XXXX XXXX'
                     error={error}
                     {...input}
