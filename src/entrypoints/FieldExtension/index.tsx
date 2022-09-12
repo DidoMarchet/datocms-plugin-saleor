@@ -74,7 +74,7 @@ export default function FieldExtension({ ctx }: PropTypes) {
             <button type='button' onClick={(e) => handleRemove(e)} className={s['remove']}>
               <FontAwesomeIcon icon={faTimesCircle} />
             </button>
-            <ProductBlock product={product} config={config} selected={true} />
+            <ProductBlock product={product} selected={true} />
           </div>
         )}
         {/* Modal button */}

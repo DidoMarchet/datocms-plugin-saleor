@@ -1,6 +1,5 @@
 export type Config = {
   backendUrl: string
-  dashboardUrl?: string
   channel: string
   token?: string
 }
@@ -98,14 +97,11 @@ const getProduct = `
 
 export default class SaleorClient {
   backendUrl: string
-  dashboardUrl?: string
   channel: string
   token?: string
 
-  constructor({ backendUrl, dashboardUrl, channel, token }: Config) {
-    this.backendUrl = backendUrl.endsWith('/') ? backendUrl.slice(0, -1) : backendUrl
-    this.dashboardUrl =
-      dashboardUrl && dashboardUrl.endsWith('/') ? dashboardUrl.slice(0, -1) : dashboardUrl
+  constructor({ backendUrl, channel, token }: Config) {
+    this.backendUrl = backendUrl.endsWith('/') ? backendUrl : `${backendUrl}/`
     this.channel = channel
     this.token = token
   }
@@ -129,7 +125,7 @@ export default class SaleorClient {
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   async fetch(requestBody: any) {
-    const res = await fetch(`${this.backendUrl}/graphql/`, {
+    const res = await fetch(`${this.backendUrl}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
