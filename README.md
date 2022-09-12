@@ -61,10 +61,10 @@ The selected product o variant will be displayed in the related record.
 </p>
 
 ## Gotchas
-If you want to link more than one product or variant you can use Saloer Product field inside (Modular Content Field)[https://www.datocms.com/docs/content-modelling/modular-content]
+If you want to link more than one product or variant you can use Saloer Product field inside [Modular Content Field](https://www.datocms.com/docs/content-modelling/modular-content)
 
 ## Thanks
-Thanks for the inspiration to (DatoCMS Commerce Layer Plugin)[https://www.datocms.com/marketplace/plugins/i/datocms-plugin-commercelayer]
+Thanks for the inspiration to [DatoCMS Commerce Layer Plugin](https://www.datocms.com/marketplace/plugins/i/datocms-plugin-commercelayer)
 
 Enjoy :punch:
 
