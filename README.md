@@ -1,11 +1,11 @@
 # DatoCMS Saleor plugin
 
-:link: A plugin that enhances your product page, allowing you to quickly find Saleor 's products and variants and link them with DatoCMS
+:link: A plugin that enhances your product page, allowing you to quickly find Saleor products and variants and link them with DatoCMS.
 
 ## Plugin settings
 You can search the plugin from the DatoCMS admin dashboard or install it from the [marketplace](https://www.datocms.com/marketplace/plugins/i/datocms-plugin-saleor). 
 
-Once installed, you can configure it with the endpoint and credential of your Saleor enviroment.
+Once installed, you can configure the endpoint, the channel and the token (if required) of your Saleor enviroment.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/38940340/189491197-e451b540-0b14-494f-9909-3166bf2642ba.png" width="800" />
@@ -27,7 +27,7 @@ Apply Saloer plugin to a single-line text field into your model and select and s
   <img src="https://user-images.githubusercontent.com/38940340/189491369-60e00b93-e36c-4bba-8fa5-cde74f2176fc.png" width="800" />
 </p>
 
-Now you can browse your Saleor products and variants searching them by name or sku. P
+Now you can browse your Saleor products and variants searching them by name or sku.
 
 The results shall be distinguished by specific tag: product or variant.
 
@@ -53,7 +53,7 @@ The selected product o variant will be displayed in the related record.
   <img src="https://user-images.githubusercontent.com/38940340/189491482-a2a0cc38-d834-404a-8c89-2991ff570540.png" width="800" />
 </p>
 
-:tada:	And finally you can query your field and get the product ior variant id.
+:tada:	And finally you can query your field and get the product or variant id.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/38940340/189491552-46eb886b-3e1e-4b41-9450-d12f684ce5e0.png" width="800" />
@@ -63,7 +63,7 @@ The selected product o variant will be displayed in the related record.
 If you want to link more than one product or variant you can use Saloer Product field inside (Modular Content Field)[https://www.datocms.com/docs/content-modelling/modular-content]
 
 ## Thanks
-Thanks for the inspieration to (DatoCMS Commerce Layer Plugin)[https://www.datocms.com/marketplace/plugins/i/datocms-plugin-commercelayer]
+Thanks for the inspiration to (DatoCMS Commerce Layer Plugin)[https://www.datocms.com/marketplace/plugins/i/datocms-plugin-commercelayer]
 
 Enjoy :punch:
 
