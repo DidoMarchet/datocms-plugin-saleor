@@ -8,8 +8,9 @@ You can search the plugin from the DatoCMS admin dashboard or install it from th
 Once installed, you can configure the endpoint, the channel and the token (if required) of your Saleor enviroment.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/38940340/189491197-e451b540-0b14-494f-9909-3166bf2642ba.png" width="800" />
+  <img src="https://user-images.githubusercontent.com/38940340/189606098-512a4014-f7b5-48f9-85cd-97025d5615bc.png" width="800" />
 </p>
+
 
 ## Plugin usage
 
