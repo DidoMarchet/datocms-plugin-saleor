@@ -14,7 +14,7 @@ Once installed, you can configure the endpoint, the channel and the token (if re
 
 ## Plugin usage
 
-Apply Saloer plugin to a single-line text field into your model and select and select *Saleor Product* from the dropdown menu in the *Presentation* tab.
+Apply Saloer plugin to a single-line text field into your model and select *Saleor Product* from the dropdown menu in the *Presentation* tab.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/38940340/189491317-f6cb1cd2-4ea8-4506-b440-3fe28dff1fe4.png" width="800" />
